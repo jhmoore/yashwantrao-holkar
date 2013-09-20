@@ -7,7 +7,7 @@ Dir['./lib/*.rb'].each { |lib| require lib }
 include DoStuff
 
 on_turn do
-  #return '.' if my.ammo < 1
+  return '.' if my.ammo < 1
   #
   #if opponents.length > 0
   #  enemy = opponents.first
@@ -26,10 +26,10 @@ on_turn do
       @arbitrary_bullshit += 20
       "r#{@arbitrary_bullshit.to_s}"
     else
-      move_around
+      'f'
     end
   else
-    'f'
+    move_around
   end
 end
 
