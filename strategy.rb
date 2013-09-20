@@ -26,7 +26,7 @@ on_turn do
       @arbitrary_bullshit += 20
       "r#{@arbitrary_bullshit.to_s}"
     else
-      'f'
+      move_around
     end
   else
     'f'
