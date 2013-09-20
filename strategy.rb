@@ -11,11 +11,11 @@ on_turn do
 
   if opponents.length >= 1
     opponent = opponents.first
-    if opponent.obscured?
-      move_around
-    else
-      'f'
-    end
+    #if opponent.obscured?
+    #  move_around
+    #else
+    #  'f'
+    #end
     #return move_towards! opponent if obscured? opponent
     #return aim_at! opponent unless aiming_at? opponent
     #unless aiming_at?(opponent)
@@ -25,6 +25,7 @@ on_turn do
     #  end
     #  return "r#{@arbitrary_bullshit.to_s}"
     #end
+    'f'
     #fire_method
   else
     move_around
