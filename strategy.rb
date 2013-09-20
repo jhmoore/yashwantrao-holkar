@@ -1,10 +1,10 @@
 Dir['./lib/*.rb'].each { |lib| require lib }
 
-include DoStuff
-
 @times_moved_vertically = 0
 @times_moved_horizontally = 0
 @arbitrary_bullshit = 0
+
+include DoStuff
 
 on_turn do
   return rest unless robot.ammo > 0
