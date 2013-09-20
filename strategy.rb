@@ -20,8 +20,17 @@ on_turn do
   #  move_around
   #end
 
-  @arbitrary_bullshit += 20
-  "r#{@arbitrary_bullshit.to_s}"
+  enemy = opponents.first
+  if enemy
+    if !aiming_at(enemy)
+      @arbitrary_bullshit += 20
+      "r#{@arbitrary_bullshit.to_s}"
+    else
+      'f'
+    end
+  else
+    'f'
+  end
 end
 
 def move_around
