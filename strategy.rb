@@ -7,26 +7,15 @@ Dir['./lib/*.rb'].each { |lib| require lib }
 include DoStuff
 
 on_turn do
-  return '.' if robot.ammo == 0
+  return '.' if my.ammo < 1
 
-  if opponents.length >= 1
-    opponent = opponents.first
-    #if opponent.obscured?
-    #  move_around
-    #else
-    #  'f'
-    #end
-    #return move_towards! opponent if obscured? opponent
-    #return aim_at! opponent unless aiming_at? opponent
-    #unless aiming_at?(opponent)
-    #  @arbitrary_bullshit += 45
-    #  if @arbitrary_bullshit > 360
-    #    @arbitrary_bullshit = 0
-    #  end
-    #  return "r#{@arbitrary_bullshit.to_s}"
-    #end
-    'f'
-    #fire_method
+  if opponents.length > 0
+    enemy = opponents.first
+    move_around unless enemy
+    return move_towards! enemy if obscured? enemy
+    return fire_at! enemy, 0.75 if can_fire_at? enemy
+    return aim_at! enemy unless aiming_at? enemy
+    move_towards! enemy
   else
     move_around
   end
