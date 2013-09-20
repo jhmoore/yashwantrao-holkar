@@ -35,9 +35,13 @@ on_turn do
         move!(SOUTH)
       end
     else
-      @times_moved_vertically = 0
-      @times_moved_horizontally = 0
-      first_possible_move('ensw')
+      if can_move? move!(NORTH)
+        @times_moved_vertically += 1
+        move!(NORTH)
+      else
+        @times_moved_vertically += 1
+        move!(SOUTH)
+      end
     end
   end
 end
