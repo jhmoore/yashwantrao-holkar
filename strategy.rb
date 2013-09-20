@@ -1,5 +1,6 @@
 @times_moved_vertically = 0
 @times_moved_horizontally = 0
+@arbitrary_bullshit = 0
 
 on_turn do
   return rest unless robot.ammo > 0
@@ -8,7 +9,13 @@ on_turn do
     opponent = opponents.first
     #return move_towards! opponent if obscured? opponent
     #return aim_at! opponent unless aiming_at? opponent
-    return 'r45' unless aiming_at? opponent
+    unless aiming_at?(opponent)
+      @arbitrary_bullshit += 45
+      if @arbitrary_bullshit > 360
+        @arbitrary_bullshit = 0
+      end
+      return "r#{@arbitrary_bullshit.to_s}"
+    end
     'f'
   else
     if @times_moved_vertically >= 3
