@@ -14,7 +14,7 @@ on_turn do
     if opponent.obscured?
       move_around
     else
-      fire_method
+      'f'
     end
     #return move_towards! opponent if obscured? opponent
     #return aim_at! opponent unless aiming_at? opponent
