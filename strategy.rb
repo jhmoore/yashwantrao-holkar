@@ -6,8 +6,8 @@ on_turn do
 
   if opponents.length >= 1
     opponent = opponents.first
-    return move_towards! opponent if obscured? opponent
-    return aim_at! opponent unless aiming_at? opponent
+    #return move_towards! opponent if obscured? opponent
+    #return aim_at! opponent unless aiming_at? opponent
     'f'
   else
     if @times_moved_vertically >= 3
