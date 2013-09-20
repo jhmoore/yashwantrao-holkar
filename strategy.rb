@@ -8,11 +8,7 @@ on_turn do
         fire_at!(opponent)
       else
         if opponent.obscured?
-          if can_move? move!(NORTH)
-            move!(NORTH)
-          else
-            move!(SOUTH)
-          end
+          move_around
         else
           aim_at!(opponent)
         end
@@ -21,6 +17,14 @@ on_turn do
       aim_at!(opponent)
     end
   else
-    rest
+    move_around
+  end
+end
+
+def move_around
+  if can_move? move!(NORTH)
+    move!(NORTH)
+  else
+    move!(SOUTH)
   end
 end
