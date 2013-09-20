@@ -6,11 +6,7 @@ on_turn do
   if opponents.length > 1
     opponent = opponents.first
     if can_see?(opponent)
-      if aiming_at?(opponent)
-        fire_at!(opponent)
-      else
-        aim_at!(opponent)
-      end
+      fire_at!(opponent)
     else
       first_possible_move('ensw')
     end
