@@ -3,7 +3,7 @@
 on_turn do
   return rest unless robot.ammo > 1
 
-  if opponents.length > 1
+  if opponents.length >= 1
     opponent = opponents.first
     if can_see?(opponent)
       fire_at!(opponent)
