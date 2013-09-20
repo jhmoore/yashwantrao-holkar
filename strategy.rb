@@ -2,15 +2,15 @@
 @times_moved_horizontally = 0
 
 on_turn do
-  return rest unless robot.ammo > 1
+  return rest unless robot.ammo > 0
 
   if opponents.length >= 1
     opponent = opponents.first
-    #if can_see?(opponent)
-    'f'
-    #else
-    #  first_possible_move('ensw')
-    #end
+    if aimed_at?(opponent)
+      'f'
+    else
+      aim_at!(opponent)
+    end
   else
     if @times_moved_vertically >= 4
       @times_moved_vertically = 0
