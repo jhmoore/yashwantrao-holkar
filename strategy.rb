@@ -7,7 +7,7 @@ on_turn do
   if opponents.length >= 1
     opponent = opponents.first
     if can_see?(opponent)
-      fire!
+      'f'
     else
       first_possible_move('ensw')
     end
