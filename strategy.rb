@@ -1,27 +1,5 @@
 @times_moved_vertically = 0
 
-def move_around
-  #if @times_moved_vertically >= 4
-  #
-  #  @times_moved = 0
-  #  if can_move? move!(EAST)
-  #    move!(EAST)
-  #  else
-  #    move!(WEST)
-  #  end
-  #else
-  #  if can_move? move!(NORTH)
-  #    @times_moved_vertically += 1
-  #    move!(NORTH)
-  #  else
-  #    @times_moved_vertically += 1
-  #    move!(SOUTH)
-  #  end
-  #end
-
-  move!(EAST)
-end
-
 on_turn do
   return rest unless robot.ammo > 1
 
@@ -41,6 +19,6 @@ on_turn do
       aim_at!(opponent)
     end
   else
-    move_around
+    first_possible_move('ensw')
   end
 end
