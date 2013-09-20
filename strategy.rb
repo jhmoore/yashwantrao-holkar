@@ -6,11 +6,11 @@ on_turn do
 
   if opponents.length >= 1
     opponent = opponents.first
-    if can_see?(opponent)
-      'f'
-    else
-      first_possible_move('ensw')
-    end
+    #if can_see?(opponent)
+    'f'
+    #else
+    #  first_possible_move('ensw')
+    #end
   else
     if @times_moved_vertically >= 4
       @times_moved_vertically = 0
