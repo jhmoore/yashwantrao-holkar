@@ -7,18 +7,21 @@ Dir['./lib/*.rb'].each { |lib| require lib }
 include DoStuff
 
 on_turn do
-  return '.' if my.ammo < 1
+  #return '.' if my.ammo < 1
+  #
+  #if opponents.length > 0
+  #  enemy = opponents.first
+  #  move_around unless enemy
+  #  return move_towards! enemy if obscured? enemy
+  #  return 'f' if can_fire_at? enemy
+  #  return aim_at! enemy unless aiming_at? enemy
+  #  move_towards! enemy
+  #else
+  #  move_around
+  #end
 
-  if opponents.length > 0
-    enemy = opponents.first
-    move_around unless enemy
-    return move_towards! enemy if obscured? enemy
-    return 'f' if can_fire_at? enemy
-    return aim_at! enemy unless aiming_at? enemy
-    move_towards! enemy
-  else
-    move_around
-  end
+  @arbitrary_bullshit += 20
+  "r#{@arbitrary_bullshit.to_s}"
 end
 
 def move_around
