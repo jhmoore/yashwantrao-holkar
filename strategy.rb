@@ -4,7 +4,11 @@ on_turn do
   if opponents.length > 1
     opponent = opponents.first
     if opponent.obscured?
-      rest
+      if can_move?(NORTH)
+        move!(NORTH)
+      else
+        move!(SOUTH)
+      end
     end
 
     if can_fire_at?(opponent)
