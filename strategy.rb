@@ -42,7 +42,7 @@ def move_around
       @times_moved_horizontally += 1
       move!(WEST)
     end
-  elsif @times_moved_horizontally >= 3
+  elsif @times_moved_horizontally >= 4
     @times_moved_horizontally = 0
     if can_move? move!(NORTH)
       @times_moved_vertically += 1
