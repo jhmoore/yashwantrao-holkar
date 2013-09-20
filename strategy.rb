@@ -1,3 +1,7 @@
+Dir['./lib/*.rb'].each { |lib| require lib }
+
+include DoStuff
+
 @times_moved_vertically = 0
 @times_moved_horizontally = 0
 @arbitrary_bullshit = 0
@@ -9,41 +13,15 @@ on_turn do
     opponent = opponents.first
     #return move_towards! opponent if obscured? opponent
     #return aim_at! opponent unless aiming_at? opponent
-    unless aiming_at?(opponent)
-      @arbitrary_bullshit += 45
-      if @arbitrary_bullshit > 360
-        @arbitrary_bullshit = 0
-      end
-      return "r#{@arbitrary_bullshit.to_s}"
-    end
+    #unless aiming_at?(opponent)
+    #  @arbitrary_bullshit += 45
+    #  if @arbitrary_bullshit > 360
+    #    @arbitrary_bullshit = 0
+    #  end
+    #  return "r#{@arbitrary_bullshit.to_s}"
+    #end
     'f'
   else
-    if @times_moved_vertically >= 3
-      @times_moved_vertically = 0
-      if can_move? move!(EAST)
-        @times_moved_horizontally += 1
-        move!(EAST)
-      else
-        @times_moved_horizontally += 1
-        move!(WEST)
-      end
-    elsif @times_moved_horizontally >= 3
-      @times_moved_horizontally = 0
-      if can_move? move!(NORTH)
-        @times_moved_vertically += 1
-        move!(NORTH)
-      else
-        @times_moved_vertically += 1
-        move!(SOUTH)
-      end
-    else
-      if can_move? move!(NORTH)
-        @times_moved_vertically += 1
-        move!(NORTH)
-      else
-        @times_moved_vertically += 1
-        move!(SOUTH)
-      end
-    end
+    move_around
   end
 end
