@@ -7,7 +7,7 @@ on_turn do
   if opponents.length >= 1
     opponent = opponents.first
     if can_see?(opponent)
-      if can_fire_at?(opponent)
+      if aimed_at?(opponent)
         fire_at!(opponent)
       else
         aim_at!(opponent)
