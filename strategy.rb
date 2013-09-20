@@ -5,18 +5,22 @@ on_turn do
 
   if opponents.length > 1
     opponent = opponents.first
-    if can_fire_at?(opponent)
-      if aiming_at?(opponent)
-        fire_at!(opponent)
-      else
-        if opponent.obscured?
-          first_possible_move('ensw')
+    if can_see?(opponent)
+      if can_fire_at?(opponent)
+        if aiming_at?(opponent)
+          fire_at!(opponent)
         else
-          aim_at!(opponent)
+          if opponent.obscured?
+            first_possible_move('ensw')
+          else
+            aim_at!(opponent)
+          end
         end
+      else
+        aim_at!(opponent)
       end
     else
-      aim_at!(opponent)
+      first_possible_move('ensw')
     end
   else
     if @times_moved_vertically >= 4
