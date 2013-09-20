@@ -1,17 +1,15 @@
 @times_moved_vertically = 0
 @times_moved_horizontally = 0
 
+include Aggressive
+
 on_turn do
   return rest unless robot.ammo > 1
 
   if opponents.length >= 1
     opponent = opponents.first
     if can_see?(opponent)
-      if aimed_at?(opponent)
-        fire_at!(opponent)
-      else
-        aim_at!(opponent)
-      end
+      act_aggressively
     else
       first_possible_move('ensw')
     end
