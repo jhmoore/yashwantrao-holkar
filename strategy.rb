@@ -6,7 +6,7 @@ on_turn do
 
   if opponents.length >= 1
     opponent = opponents.first
-    return fire_at! opponent, 0.75 if can_fire_at? opponent
+    fire!(0.75) if can_fire_at? opponent
     return aim_at! opponent unless aiming_at? opponent
     'f'
   else
