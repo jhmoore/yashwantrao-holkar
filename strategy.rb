@@ -6,11 +6,8 @@ on_turn do
 
   if opponents.length >= 1
     opponent = opponents.first
-    if aimed_at?(opponent)
-      'f'
-    else
-      aim_at!(opponent)
-    end
+    return aim_at! enemy unless aiming_at? enemy
+    'f'
   else
     if @times_moved_vertically >= 3
       @times_moved_vertically = 0
