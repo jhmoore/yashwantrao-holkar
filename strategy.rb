@@ -7,7 +7,7 @@ Dir['./lib/*.rb'].each { |lib| require lib }
 include DoStuff
 
 on_turn do
-  return rest if robot.ammo == 0
+  return '.' if robot.ammo == 0
 
   if opponents.length >= 1
     opponent = opponents.first
