@@ -1,4 +1,5 @@
 @times_moved_vertically = 0
+@times_moved_horizontally = 0
 
 on_turn do
   return rest unless robot.ammo > 1
@@ -16,14 +17,16 @@ on_turn do
     end
   else
     if @times_moved_vertically >= 4
-
-      @times_moved = 0
+      @times_moved_vertically = 0
       if can_move? move!(EAST)
+        @times_moved_horizontally += 1
         move!(EAST)
       else
+        @times_moved_horizontally += 1
         move!(WEST)
       end
-    else
+    elsif @times_moved_horizontally >= 4
+      @times_moved_horizontally = 0
       if can_move? move!(NORTH)
         @times_moved_vertically += 1
         move!(NORTH)
@@ -31,6 +34,10 @@ on_turn do
         @times_moved_vertically += 1
         move!(SOUTH)
       end
+    else
+      @times_moved_vertically = 0
+      @times_moved_horizontally = 0
+      first_possible_move('ensw')
     end
   end
 end
