@@ -12,7 +12,7 @@ on_turn do
       aim_at!(opponent)
     end
   else
-    if @times_moved_vertically >= 4
+    if @times_moved_vertically >= 3
       @times_moved_vertically = 0
       if can_move? move!(EAST)
         @times_moved_horizontally += 1
@@ -21,7 +21,7 @@ on_turn do
         @times_moved_horizontally += 1
         move!(WEST)
       end
-    elsif @times_moved_horizontally >= 4
+    elsif @times_moved_horizontally >= 3
       @times_moved_horizontally = 0
       if can_move? move!(NORTH)
         @times_moved_vertically += 1
