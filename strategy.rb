@@ -10,7 +10,7 @@ on_turn do
         fire_at!(opponent)
       else
         if opponent.obscured?
-          move_around
+          first_possible_move('ensw')
         else
           aim_at!(opponent)
         end
@@ -19,6 +19,22 @@ on_turn do
       aim_at!(opponent)
     end
   else
-    first_possible_move('ensw')
+    if @times_moved_vertically >= 4
+
+      @times_moved = 0
+      if can_move? move!(EAST)
+        move!(EAST)
+      else
+        move!(WEST)
+      end
+    else
+      if can_move? move!(NORTH)
+        @times_moved_vertically += 1
+        move!(NORTH)
+      else
+        @times_moved_vertically += 1
+        move!(SOUTH)
+      end
+    end
   end
 end
