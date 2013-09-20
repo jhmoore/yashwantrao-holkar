@@ -13,7 +13,7 @@ on_turn do
     enemy = opponents.first
     move_around unless enemy
     return move_towards! enemy if obscured? enemy
-    return fire_at! enemy, 0.75 if can_fire_at? enemy
+    return 'f' if can_fire_at? enemy
     return aim_at! enemy unless aiming_at? enemy
     move_towards! enemy
   else
