@@ -21,7 +21,7 @@ on_turn do
 
   enemy = opponents.first
   if enemy
-    return '.' if my.ammo < 2
+    return '.' if my.reload.ammo < 2
     #if !aiming_at(enemy)
     #  @arbitrary_bullshit += 20
     #  "r#{@arbitrary_bullshit.to_s}"
