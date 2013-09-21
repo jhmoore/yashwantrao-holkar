@@ -31,7 +31,11 @@ on_turn do
       aim_at!(enemy)
     end
   else
-    move_around
+    if my.ammo_full?
+      move_around
+    else
+      '.'
+    end
   end
 end
 
