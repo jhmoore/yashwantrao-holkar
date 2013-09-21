@@ -4,8 +4,8 @@ Dir['./lib/*.rb'].each { |lib| require lib }
   :vertical_moves => 0,
   :horizontal_moves => 0,
   :shots_taken => 0,
-  :vertical_limit => rand(4),
-  :horizontal_limit => rand(4)
+  :vertical_limit => 4,
+  :horizontal_limit => 3
 }
 
 include DoStuff
@@ -44,7 +44,6 @@ end
 def move_around
   if @stuff[:vertical_moves] >= @stuff[:vertical_limit]
     @stuff[:vertical_moves] = 0
-    @stuff[:vertical_limit] = rand(4)
     if can_move? move!(EAST)
       go_east
     else
@@ -52,7 +51,6 @@ def move_around
     end
   elsif @stuff[:horizontal_moves] >= @stuff[:horizontal_limit]
     @stuff[:horizontal_moves] = 0
-    @stuff[:horizontal_limit] = rand(4)
     if can_move? move!(NORTH)
       go_north
     else
