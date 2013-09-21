@@ -1,8 +1,10 @@
 Dir['./lib/*.rb'].each { |lib| require lib }
 
-@times_moved_vertically = 0
-@times_moved_horizontally = 0
-@times_fired = 0
+@stuff_happened = {
+  :vertical_moves => 0,
+  :horizontal_moves => 0,
+  :shots_token => 0
+}
 
 include DoStuff
 
@@ -14,11 +16,11 @@ on_turn do
         '.'
       else
         if i.can_see?(enemy)
-          if @times_fired <= 3
-            @times_fired += 1
+          if @stuff_happened[:shots_token] <= 3
+            @stuff_happened[:shots_token] += 1
             'f'
           else
-            @times_fired = 0
+            @stuff_happened[:shots_token] = 0
             move_around
           end
         else
@@ -34,31 +36,45 @@ on_turn do
 end
 
 def move_around
-  if @times_moved_vertically >= 3
-    @times_moved_vertically = 0
+  if @stuff_happened[:vertical_moves] >= 3
+    @stuff_happened[:vertical_moves] = 0
     if can_move? move!(EAST)
-      @times_moved_horizontally += 1
-      move!(EAST)
+      go_east
     else
-      @times_moved_horizontally += 1
-      move!(WEST)
+      go_west
     end
-  elsif @times_moved_horizontally >= 4
-    @times_moved_horizontally = 0
+  elsif @stuff_happened[:horizontal_moves] >= 4
+    @stuff_happened[:horizontal_moves] = 0
     if can_move? move!(NORTH)
-      @times_moved_vertically += 1
-      move!(NORTH)
+      go_north
     else
-      @times_moved_vertically += 1
-      move!(SOUTH)
+      go_south
     end
   else
     if can_move? move!(NORTH)
-      @times_moved_vertically += 1
-      move!(NORTH)
+      go_north
     else
-      @times_moved_vertically += 1
-      move!(SOUTH)
+      go_east
     end
   end
+end
+
+def go_east
+  @stuff_happened[:horizontal_moves] += 1
+  move!(EAST)
+end
+
+def go_west
+  @stuff_happened[:horizontal_moves] += 1
+  move!(WEST)
+end
+
+def go_north
+  @stuff_happened[:vertical_moves] += 1
+  move!(NORTH)
+end
+
+def go_south
+  @stuff_happened[:vertical_moves] += 1
+  move!(SOUTH)
 end
