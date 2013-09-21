@@ -31,10 +31,10 @@ on_turn do
       if my.ammo < 2
         '.'
       else
-        if enemy.obscured?
-          move_around
-        else
+        if i.can_see?(enemy)
           'f'
+        else
+          move_around
         end
       end
     else
