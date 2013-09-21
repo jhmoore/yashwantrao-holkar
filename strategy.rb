@@ -28,7 +28,7 @@ on_turn do
     #else
     #  'f'
     #end
-    if i.can_fire_at(enemy)
+    if i.can_fire_at?(enemy)
       'f'
     else
       aim_at!(enemy)
