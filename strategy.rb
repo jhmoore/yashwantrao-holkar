@@ -18,7 +18,7 @@ on_turn do
         '.'
       else
         if i.can_see?(enemy)
-          if @stuff[:shots_taken] <= 3
+          if @stuff[:shots_taken] >= 3
             @stuff[:shots_taken] += 1
             'f'
           else
