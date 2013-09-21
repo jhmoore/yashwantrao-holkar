@@ -23,11 +23,12 @@ on_turn do
   enemy = opponents.first
   if enemy
     #if !aiming_at(enemy)
-      @arbitrary_bullshit += 20
-      "r#{@arbitrary_bullshit.to_s}"
+    #  @arbitrary_bullshit += 20
+    #  "r#{@arbitrary_bullshit.to_s}"
     #else
     #  'f'
     #end
+    aim_at!(enemy)
   else
     move_around
   end
