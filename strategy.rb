@@ -1,6 +1,6 @@
 Dir['./lib/*.rb'].each { |lib| require lib }
 
-@stuff = {
+@stuff_happened = {
   :vertical_moves => 0,
   :horizontal_moves => 0,
   :shots_taken => 0
@@ -16,11 +16,11 @@ on_turn do
         '.'
       else
         if i.can_see?(enemy)
-          if @stuff[:shots_taken] >= 3
-            @stuff[:shots_taken] += 1
+          if @stuff_happened[:shots_taken] <= 3
+            @stuff_happened[:shots_taken] += 1
             'f'
           else
-            @stuff[:shots_taken] = 0
+            @stuff_happened[:shots_taken] = 0
             move_around
           end
         else
@@ -40,15 +40,15 @@ on_turn do
 end
 
 def move_around
-  if @stuff[:vertical_moves] >= 4
-    @stuff[:vertical_moves] = 0
+  if @stuff_happened[:vertical_moves] >= 3
+    @stuff_happened[:vertical_moves] = 0
     if can_move? move!(EAST)
       go_east
     else
       go_west
     end
-  elsif @stuff[:horizontal_moves] >= 3
-    @stuff[:horizontal_moves] = 0
+  elsif @stuff_happened[:horizontal_moves] >= 4
+    @stuff_happened[:horizontal_moves] = 0
     if can_move? move!(NORTH)
       go_north
     else
@@ -64,21 +64,21 @@ def move_around
 end
 
 def go_east
-  @stuff[:horizontal_moves] += 1
+  @stuff_happened[:horizontal_moves] += 1
   move!(EAST)
 end
 
 def go_west
-  @stuff[:horizontal_moves] += 1
+  @stuff_happened[:horizontal_moves] += 1
   move!(WEST)
 end
 
 def go_north
-  @stuff[:vertical_moves] += 1
+  @stuff_happened[:vertical_moves] += 1
   move!(NORTH)
 end
 
 def go_south
-  @stuff[:vertical_moves] += 1
+  @stuff_happened[:vertical_moves] += 1
   move!(SOUTH)
 end
