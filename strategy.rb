@@ -21,7 +21,11 @@ on_turn do
           if @stuff[:shots_taken] <= 3
             @stuff[:shots_taken] += 1
             degrees_of_skew = my.rotation - my.direction_to(enemy)
-            fire!(degrees_of_skew)
+            if degrees_of_skew == 0
+              'f'
+            else
+              fire!(degrees_of_skew)
+            end
           else
             @stuff[:shots_taken] = 0
             move_around
