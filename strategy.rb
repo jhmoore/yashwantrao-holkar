@@ -7,7 +7,7 @@ Dir['./lib/*.rb'].each { |lib| require lib }
 include DoStuff
 
 on_turn do
-  return '.' if my.ammo < 1
+  return '.' if my.ammo < 2
   #
   #if opponents.length > 0
   #  enemy = opponents.first
