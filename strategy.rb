@@ -2,37 +2,25 @@ Dir['./lib/*.rb'].each { |lib| require lib }
 
 @times_moved_vertically = 0
 @times_moved_horizontally = 0
-@arbitrary_bullshit = 0
+@times_fired = 0
 
 include DoStuff
 
 on_turn do
-  #
-  #if opponents.length > 0
-  #  enemy = opponents.first
-  #  move_around unless enemy
-  #  return move_towards! enemy if obscured? enemy
-  #  return 'f' if can_fire_at? enemy
-  #  return aim_at! enemy unless aiming_at? enemy
-  #  move_towards! enemy
-  #else
-  #  move_around
-  #end
-
   enemy = opponents.first
   if enemy
-    #if !aiming_at(enemy)
-    #  @arbitrary_bullshit += 20
-    #  "r#{@arbitrary_bullshit.to_s}"
-    #else
-    #  'f'
-    #end
     if i.can_fire_at?(enemy)
       if my.ammo < 2
         '.'
       else
         if i.can_see?(enemy)
-          'f'
+          if @times_fired <= 3
+            @times_fired += 1
+            'f'
+          else
+            @times_fired = 0
+            move_around
+          end
         else
           move_around
         end
