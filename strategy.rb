@@ -1,9 +1,11 @@
 Dir['./lib/*.rb'].each { |lib| require lib }
 
-@stuff_happened = {
+@stuff = {
   :vertical_moves => 0,
   :horizontal_moves => 0,
-  :shots_token => 0
+  :shots_taken => 0,
+  :vertical_limit => rand(4),
+  :horizontal_limit => rand(4)
 }
 
 include DoStuff
@@ -16,11 +18,11 @@ on_turn do
         '.'
       else
         if i.can_see?(enemy)
-          if @stuff_happened[:shots_token] <= 3
-            @stuff_happened[:shots_token] += 1
+          if @stuff[:shots_taken] <= 3
+            @stuff[:shots_taken] += 1
             'f'
           else
-            @stuff_happened[:shots_token] = 0
+            @stuff[:shots_taken] = 0
             move_around
           end
         else
@@ -40,15 +42,17 @@ on_turn do
 end
 
 def move_around
-  if @stuff_happened[:vertical_moves] >= 3
-    @stuff_happened[:vertical_moves] = 0
+  if @stuff[:vertical_moves] >= @stuff[:vertical_limit]
+    @stuff[:vertical_moves] = 0
+    @stuff[:vertical_limit] = rand(4)
     if can_move? move!(EAST)
       go_east
     else
       go_west
     end
-  elsif @stuff_happened[:horizontal_moves] >= 4
-    @stuff_happened[:horizontal_moves] = 0
+  elsif @stuff[:horizontal_moves] >= @stuff[:horizontal_limit]
+    @stuff[:horizontal_moves] = 0
+    @stuff[:horizontal_limit] = rand(4)
     if can_move? move!(NORTH)
       go_north
     else
@@ -64,21 +68,21 @@ def move_around
 end
 
 def go_east
-  @stuff_happened[:horizontal_moves] += 1
+  @stuff[:horizontal_moves] += 1
   move!(EAST)
 end
 
 def go_west
-  @stuff_happened[:horizontal_moves] += 1
+  @stuff[:horizontal_moves] += 1
   move!(WEST)
 end
 
 def go_north
-  @stuff_happened[:vertical_moves] += 1
+  @stuff[:vertical_moves] += 1
   move!(NORTH)
 end
 
 def go_south
-  @stuff_happened[:vertical_moves] += 1
+  @stuff[:vertical_moves] += 1
   move!(SOUTH)
 end
