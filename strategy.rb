@@ -18,7 +18,14 @@ on_turn do
         if i.can_see?(enemy)
           if @stuff_happened[:shots_taken] <= 3
             @stuff_happened[:shots_taken] += 1
-            'f'
+            rotation_thing = my.rotation
+            direction_thing = my.direction_to(enemy)
+            degrees_of_skew = rotation_thing - direction_thing
+            if degrees_of_skew == 0
+              'f'
+            else
+              fire!(degrees_of_skew)
+            end
           else
             @stuff_happened[:shots_taken] = 0
             move_around
