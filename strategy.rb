@@ -18,9 +18,15 @@ on_turn do
         if i.can_see?(enemy)
           if @stuff_happened[:shots_taken] <= 3
             @stuff_happened[:shots_taken] += 1
-            rotation_thing = my.rotation
-            direction_thing = my.direction_to(enemy)
-            degrees_of_skew = rotation_thing - direction_thing
+            rotation_thing = my.rotation.to_i
+            direction_thing = my.direction_to(enemy).to_i
+
+            if direction_thing && direction_thing != 0
+              degrees_of_skew = rotation_thing - direction_thing
+            else
+              degrees_of_skew = 0
+            end
+
             if degrees_of_skew == 0
               'f'
             else
